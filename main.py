@@ -1,21 +1,27 @@
-import js # Ez engedi, hogy a Python elérje a HTML elemeket
-import datetime
-import random
+import js
 
-def gomb_kattintas(event):
-    # Kiválasztjuk a HTML-ben lévő kijelzőt az ID-ja alapján
-    kijelzo = js.document.getElementById("kijelzo")
+def szamold_ki(event):
+    # Elemek elérése
+    input_ar = js.document.getElementById("eredeti_ar")
+    input_szazalek = js.document.getElementById("szazalek")
+    kijelzo_szam = js.document.getElementById("eredmeny_szam")
     
-    # Valamilyen Python logika (például egy véletlen szám és időpont)
-    most = datetime.datetime.now().strftime("%H:%M:%S")
-    veletlen_szam = random.randint(1, 100)
-    
-    # Frissítjük a kijelző tartalmát
-    kijelzo.innerHTML = f"<b>Siker!</b><br>Idő: {most}<br>Szerencseszám: {veletlen_szam}"
-    
-    # Módosíthatunk stílust is Pythonból
-    kijelzo.style.borderColor = "#34C759"
-    kijelzo.style.borderStyle = "solid"
-    kijelzo.style.borderWidth = "2px"
-
-print("Python rendszer kész!")
+    try:
+        # Értékek beolvasása és számmá alakítása
+        ar = float(input_ar.value)
+        szazalek = float(input_szazalek.value)
+        
+        # A matek: Akciós ár = Eredeti * (1 - kedvezmény/100)
+        vegosszeg = ar * (1 - szazalek / 100)
+        
+        # Megjelenítés (ezresek csoportosításával)
+        formazott_osszeg = "{:,.0f}".format(vegosszeg).replace(",", " ")
+        kijelzo_szam.innerHTML = f"{formazott_osszeg} Ft"
+        
+        # Siker esetén egy kis zöld villanás a kijelzőn
+        js.document.getElementById("kijelzo").style.borderColor = "#34C759"
+        
+    except ValueError:
+        # Ha nem számot írtál be, vagy üres valamelyik mező
+        kijelzo_szam.innerHTML = "Hiba!"
+        js.document.getElementById("kijelzo").style.borderColor = "#ff3b30"
