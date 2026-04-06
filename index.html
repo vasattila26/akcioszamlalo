@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Saját App</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #f0f0f0; }
-        .button { padding: 15px 25px; background: #007AFF; color: white; border-radius: 10px; text-decoration: none; display: inline-block; }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Python App</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <h1>Szia! Ez az első iPhone appom.</h1>
-    <p>Ha ezt látod, a GitHub Pages működik!</p>
-    <a href="#" class="button" onclick="alert('Működik!')">Kattints rám!</a>
+    <h1>Python fut az iPhone-odon!</h1>
+    <div id="output"></div>
+
+    <script type="py">
+        from datetime import datetime
+        import js
+
+        # Ez itt már tiszta Python!
+        most = datetime.now().strftime("%H:%M:%S")
+        js.document.getElementById("output").innerHTML = f"A pontos idő: {most}"
+        
+        print("Szia a konzolról!")
+    </script>
 </body>
 </html>
