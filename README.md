@@ -1,0 +1,2 @@
+# akcioszamlalo
+Boltokhoz
