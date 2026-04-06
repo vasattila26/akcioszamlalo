@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Python App</title>
+    
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <style>
+        body { font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f2f2f7; }
+        
+        /* A kijelző */
+        #kijelzo { width: 80%; padding: 30px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; margin-bottom: 30px; font-size: 24px; color: #1c1c1e; }
+        
+        /* A gomb */
+        #muvelet_gomb { background-color: #007AFF; color: white; border: none; padding: 20px 40px; border-radius: 15px; font-size: 18px; font-weight: 600; cursor: pointer; transition: transform 0.1s; }
+        #muvelet_gomb:active { transform: scale(0.95); }
+    </style>
 </head>
 <body>
-    <h1>Python fut az iPhone-odon!</h1>
-    <div id="output"></div>
 
-    <script type="py">
-        from datetime import datetime
-        import js
+    <div id="kijelzo">Várakozás...</div>
+    
+    <button id="muvelet_gomb" py-click="gomb_kattintas">Python kód futtatása</button>
 
-        # Ez itt már tiszta Python!
-        most = datetime.now().strftime("%H:%M:%S")
-        js.document.getElementById("output").innerHTML = f"A pontos idő: {most}"
-        
-        print("Szia a konzolról!")
-    </script>
+    <script type="py" src="./main.py" config="./pyscript.json"></script>
+
 </body>
 </html>
